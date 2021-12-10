@@ -44,6 +44,11 @@ namespace BerryMap
             }
         }
 
+        public static string GetPokemonName()
+        {
+            System.Random random = new System.Random();
+            return ParseResponse<Pokemon>(SendRequest<string>("GET", BaseURL + "pokemon/" + random.Next(880))).Name;
+        }
 
         private static T ParseResponse<T>(string res) => JsonConvert.DeserializeObject<T>(res);
 
@@ -64,5 +69,19 @@ namespace BerryMap
                 throw e;
             }
         }
+    }
+
+    public class Pokemon
+    {
+        private string name;
+
+        [JsonProperty("name")]
+        public string Name
+        {
+            get => Capitalize(name);
+            set => name = value;
+        }
+        
+        private string Capitalize(string input) => input.Substring(0, 1).ToUpper() + input.Substring(1).ToLower();
     }
 }
