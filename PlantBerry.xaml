@@ -1,0 +1,13 @@
+﻿<Window x:Class="BerryMap.PlantBerry"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BerryMap"
+        mc:Ignorable="d"
+        Title="PlantBerry" Height="108.424" Width="521.305" Loaded="Window_Loaded">
+    <Grid Name="Wrapper">
+        <Button Name="Plant" Content="Confirm" HorizontalAlignment="Left" Margin="10,40,0,0" VerticalAlignment="Top" Width="120" Height="27" Click="Plant_Click"/>
+        <Button Name="Cancel" Content="Cancel" HorizontalAlignment="Left" Margin="385,40,0,0" VerticalAlignment="Top" Width="120" Height="27" IsCancel="True"/>
+    </Grid>
+</Window>
