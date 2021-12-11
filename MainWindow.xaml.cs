@@ -34,8 +34,7 @@ namespace BerryMap
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            Title = MessageOfTheDay.Message;
-            // messageOfTheDayBlock.Text = MessageOfTheDay.Message;
+            messageOfTheDayBlock.Text = MessageOfTheDay.Message;
 
             ShowPlotsButton.Visibility = Visibility.Hidden;
             Berries.Visibility = Visibility.Hidden;
@@ -51,14 +50,13 @@ namespace BerryMap
                 FileStream fileStream = new FileStream(filePath, FileMode.Open);
                 plots = (List<Plot>)formatter.Deserialize(fileStream);
                 fileStream.Close();
-
-                FillPlotLocationLabels();
             }
             catch (FileNotFoundException)
             {
                 InstantiateNewPlots();
             }
 
+            FillPlotLocationImages();
             PopulatePlots();
         }
 
@@ -77,17 +75,52 @@ namespace BerryMap
             TurnOffDisplays();
 
             if (Routes.SelectedItem != null)
-                (Routes.SelectedItem as Plot).Location.DisplayLocation(Colors.Green);
+                (Routes.SelectedItem as Plot).Location.DisplayLocation();
         }
 
         private void TurnOffDisplays()
         {
-            PastoriaCity.Background = new SolidColorBrush(Colors.Transparent);
-            FloaromaTown.Background = new SolidColorBrush(Colors.Transparent);
-            Route208.Background = new SolidColorBrush(Colors.Transparent);
-            Route221.Background = new SolidColorBrush(Colors.Transparent);
-            FuegoIronworks.Background = new SolidColorBrush(Colors.Transparent);
-            SolaceonTown.Background = new SolidColorBrush(Colors.Transparent);
+            Hide(Route208);
+            Hide(FloaromaTown);
+            Hide(Route212_1);
+            Hide(Route212_2);
+            Hide(Route212_3);
+            Hide(Route221);
+            Hide(Route209_1);
+            Hide(Route209_2);
+            Hide(SolaceonTown);
+            Hide(Route210_1);
+            Hide(Route210_2);
+            Hide(Route215_1);
+            Hide(Route215_2);
+            Hide(Route214);
+            Hide(PastoriaCity);
+            Hide(Route213);
+            Hide(Route211);
+            Hide(Route207);
+            Hide(Route206_1);
+            Hide(Route206_2);
+            Hide(Ironworks);
+            Hide(Route205_1);
+            Hide(Route205_2);
+            Hide(Route205_3);
+            Hide(EternaForest);
+            Hide(Route218);
+        }
+
+        private void Hide(Image image, bool hide = true)
+        {
+            /*BitmapImage bitmap = new BitmapImage();
+            bitmap.BeginInit();
+            string location = System.Reflection.Assembly.GetEntryAssembly().Location.Replace("BerryMap.exe", "BerryIcon.png");
+            bitmap.UriSource = new Uri(location, UriKind.Absolute);
+            bitmap.EndInit();
+            image.Source = bitmap;*/
+            
+            if (hide)
+                image.Visibility = Visibility.Hidden;
+            else
+                image.Visibility = Visibility.Visible;
         }
 
         private void Routes_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -115,6 +148,7 @@ namespace BerryMap
         private void PopulatePlots()
         {
             Routes.Items.Clear();
+            plots.Remove(plots.Find(x => x.Location.Name == "Route 220"));
             
             foreach (Plot plot in plots)
             {
@@ -163,45 +197,76 @@ namespace BerryMap
             }
         }
 
-        private void FillPlotLocationLabels()
+        private void FillPlotLocationImages()
         {
-            plots.Find(x => x.Location.Name.Contains("Floaroma")).Location.Display = FloaromaTown;
-            plots.Find(x => x.Location.Name.Contains("Pastoria")).Location.Display = PastoriaCity;
-            plots.Find(x => x.Location.Name.Contains("208")).Location.Display = Route208;
-            plots.Find(x => x.Location.Name.Contains("Ironworks")).Location.Display = FuegoIronworks;
-            plots.Find(x => x.Location.Name.Contains("221")).Location.Display = Route221;
-            plots.Find(x => x.Location.Name.Contains("Solaceon")).Location.Display = SolaceonTown;
+            FillPlotImage(0, Route208);
+            FillPlotImage(1, FloaromaTown);
+            FillPlotImage(2, Route212_1);
+            FillPlotImage(3, Route212_2);
+            FillPlotImage(4, Route212_3);
+            FillPlotImage(5, Route221);
+            FillPlotImage(6, Route209_1);
+            FillPlotImage(7, Route209_2);
+            FillPlotImage(8, SolaceonTown);
+            FillPlotImage(9, Route210_1);
+            FillPlotImage(10, Route210_2);
+            FillPlotImage(11, Route215_1);
+            FillPlotImage(12, Route215_2);
+            FillPlotImage(13, Route214);
+            FillPlotImage(14, PastoriaCity);
+            FillPlotImage(15, Route213);
+            FillPlotImage(16, Route211);
+            FillPlotImage(17, Route207);
+            FillPlotImage(18, Route206_1);
+            FillPlotImage(19, Route206_2);
+            FillPlotImage(20, Ironworks);
+            FillPlotImage(21, Route205_1);
+            FillPlotImage(21, Route205_2);
+            FillPlotImage(22, Route205_3);
+            FillPlotImage(23, EternaForest);
+            FillPlotImage(24, Route218);
+        }
+
+        private void FillPlotImage(int index, Image image)
+        {
+            BitmapImage bitmap = new BitmapImage();
+            bitmap.BeginInit();
+            string location = System.Reflection.Assembly.GetEntryAssembly().Location.Replace("BerryMap.exe", "BerryIcon.png");
+            bitmap.UriSource = new Uri(location, UriKind.Absolute);
+            bitmap.EndInit();
+            image.Source = bitmap;
+
+            plots[index].Location.Display = image;
         }
 
         private void InstantiateNewPlots()
         {
-            plots.Add(new Plot(4, new Location("Route 208", Route208)));
-            plots.Add(new Plot(2, new Location("Floaroma Town", FloaromaTown)));
+            plots.Add(new Plot(4, new Location("Route 208")));
+            plots.Add(new Plot(2, new Location("Floaroma Town")));
             plots.Add(new Plot(2, new Location("Route 212 (1)")));
             plots.Add(new Plot(2, new Location("Route 212 (2)")));
             plots.Add(new Plot(4, new Location("Route 212 (3)")));
-            plots.Add(new Plot(2, new Location("Route 221", Route221)));
+            plots.Add(new Plot(2, new Location("Route 221")));
             plots.Add(new Plot(2, new Location("Route 209 (1)")));
             plots.Add(new Plot(2, new Location("Route 209 (2)")));
-            plots.Add(new Plot(4, new Location("Solaceon Town", SolaceonTown)));
-            plots.Add(new Plot(4, new Location("Route 210")));
+            plots.Add(new Plot(4, new Location("Solaceon Town")));
+            plots.Add(new Plot(4, new Location("Route 210 (1)")));
+            plots.Add(new Plot(4, new Location("Route 210 (2)")));
             plots.Add(new Plot(2, new Location("Route 215 (1)")));
             plots.Add(new Plot(2, new Location("Route 215 (2)")));
             plots.Add(new Plot(4, new Location("Route 214")));
-            plots.Add(new Plot(4, new Location("Pastoria City", PastoriaCity)));
+            plots.Add(new Plot(4, new Location("Pastoria City")));
             plots.Add(new Plot(4, new Location("Route 213")));
-            plots.Add(new Plot(4, new Location("Route 210")));
             plots.Add(new Plot(4, new Location("Route 211")));
             plots.Add(new Plot(4, new Location("Route 207")));
             plots.Add(new Plot(2, new Location("Route 206 (1)")));
             plots.Add(new Plot(2, new Location("Route 206 (2)")));
-            plots.Add(new Plot(4, new Location("Fuego Ironworks", FuegoIronworks)));
+            plots.Add(new Plot(4, new Location("Fuego Ironworks")));
             plots.Add(new Plot(4, new Location("Route 205 (1)")));
             plots.Add(new Plot(2, new Location("Route 205 (2)")));
             plots.Add(new Plot(2, new Location("Route 205 (3)")));
             plots.Add(new Plot(4, new Location("Eterna Forest")));
             plots.Add(new Plot(4, new Location("Route 218")));
-            plots.Add(new Plot(4, new Location("Route 220")));
         }
 
         private void ShowBerryCount_Click(object sender, RoutedEventArgs e)
