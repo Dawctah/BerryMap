@@ -15,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Utilities;
 
 namespace BerryMap
 {
@@ -25,10 +26,18 @@ namespace BerryMap
     {
         private List<Plot> plots = new List<Plot>();
 
-        private readonly string filePath = System.Reflection.Assembly.GetEntryAssembly().Location.Replace("BerryMap.exe", "berry.plant");
+        private string exe = "BerryMap.exe";
+
+        private string FilePath => System.Reflection.Assembly.GetEntryAssembly().Location.Replace(exe, "berry.plant");
 
         public MainWindow()
         {
+            InitializeComponent();
+        }
+
+        public MainWindow(string exe)
+        {
+            this.exe = exe;
             InitializeComponent();
         }
 
@@ -39,32 +48,22 @@ namespace BerryMap
             ShowPlotsButton.Visibility = Visibility.Hidden;
             Berries.Visibility = Visibility.Hidden;
 
-            SetMap();
+            SetMap(exe);
 
             TurnOffDisplays();
 
-            // Load previous information.
-            try
-            {
-                BinaryFormatter formatter = new BinaryFormatter();
-                FileStream fileStream = new FileStream(filePath, FileMode.Open);
-                plots = (List<Plot>)formatter.Deserialize(fileStream);
-                fileStream.Close();
-            }
-            catch (FileNotFoundException)
-            {
-                InstantiateNewPlots();
-            }
+            // Load previous data.
+            plots = Data.LoadData<List<Plot>, FileNotFoundException>(plots, FilePath, InstantiateNewPlots) as List<Plot>;
 
             FillPlotLocationImages();
             PopulatePlots();
         }
 
-        private void SetMap()
+        private void SetMap(string exe)
         {
             BitmapImage bitmap = new BitmapImage();
             bitmap.BeginInit();
-            string location = System.Reflection.Assembly.GetEntryAssembly().Location.Replace("BerryMap.exe", "sinnohmap.png");
+            string location = System.Reflection.Assembly.GetEntryAssembly().Location.Replace(exe, "sinnohmap.png");
             bitmap.UriSource = new Uri(location, UriKind.Absolute);
             bitmap.EndInit();
             Map.Source = bitmap;
@@ -191,7 +190,7 @@ namespace BerryMap
             // Save the information.
             BinaryFormatter formatter = new BinaryFormatter();
 
-            using (Stream stream = File.Create(filePath))
+            using (Stream stream = File.Create(FilePath))
             {
                 formatter.Serialize(stream, plots);
             }
@@ -231,7 +230,7 @@ namespace BerryMap
         {
             BitmapImage bitmap = new BitmapImage();
             bitmap.BeginInit();
-            string location = System.Reflection.Assembly.GetEntryAssembly().Location.Replace("BerryMap.exe", "BerryIcon.png");
+            string location = System.Reflection.Assembly.GetEntryAssembly().Location.Replace(exe, "BerryIcon.png");
             bitmap.UriSource = new Uri(location, UriKind.Absolute);
             bitmap.EndInit();
             image.Source = bitmap;
