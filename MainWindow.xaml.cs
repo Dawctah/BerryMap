@@ -94,6 +94,8 @@ namespace BerryMap
                 Plot selection = Routes.SelectedItem as Plot;
                 PlantBerry plantBerry = new PlantBerry(selection);
 
+                plantBerry.Icon = BitmapFrame.Create(new Uri(APIController.GetBerryIcon()));
+
                 plantBerry.ShowDialog();
 
                 if (plantBerry.DialogResult == true)

@@ -50,6 +50,17 @@ namespace BerryMap
             return ParseResponse<Pokemon>(SendRequest<string>("GET", BaseURL + "pokemon/" + random.Next(880))).Name;
         }
 
+        public static string GetBerryIcon()
+        {
+            List<Berry> berries = GetBerries();
+            System.Random random = new System.Random();
+
+            Berry berry = ParseResponse<Berry>(SendRequest<string>("GET", BaseURL + "berry/" + random.Next(berries.Count)));
+            berry.Item = ParseResponse<Item>(SendRequest<string>("GET", berry.Item.URL));
+
+            return berry.Item.Sprite.Image;
+        }
+
         private static T ParseResponse<T>(string res) => JsonConvert.DeserializeObject<T>(res);
 
         private static string SendRequest<T>(string method, string request)
