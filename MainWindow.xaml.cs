@@ -35,6 +35,7 @@ namespace BerryMap
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             Title = MessageOfTheDay.Message;
+            // messageOfTheDayBlock.Text = MessageOfTheDay.Message;
 
             SetMap();
 
