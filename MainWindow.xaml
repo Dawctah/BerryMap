@@ -20,5 +20,32 @@
         <Label Name="FuegoIronworks" Background="Green" HorizontalAlignment="Left" Margin="470,309,0,0" VerticalAlignment="Top" Height="10" Width="22"/>
         <Label Name="SolaceonTown" Background="Green" HorizontalAlignment="Left" Margin="730,341,0,0" VerticalAlignment="Top" Height="16" Width="35"/>
         <TextBlock Name="messageOfTheDayBlock" HorizontalAlignment="Left" Margin="66,18,0,0" Text="" TextWrapping="WrapWithOverflow" VerticalAlignment="Top" Height="51" Width="316" FontSize="16" FontFamily="BreezeSans"/>
+        <Button Name="ShowPlotsButton" BorderThickness="0" Background="Transparent" HorizontalAlignment="Left" Margin="20,85,0,0" VerticalAlignment="Top" Width="154" Height="37" Click="ShowPlotsButton_Click">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Cursor" Value="Hand"/>
+                            <Setter Property="Background" Value="Transparent"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+            <TextBlock Text="Plots" TextDecorations="Underline" FontSize="16" FontWeight="Bold" />
+        </Button>
+        <Button x:Name="ShowBerryCount" BorderThickness="0" Background="Transparent" HorizontalAlignment="Left" Margin="195,85,0,0" VerticalAlignment="Top" Width="154" Height="37" Click="ShowBerryCount_Click">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Cursor" Value="Hand"/>
+                            <Setter Property="Background" Value="Transparent"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+            <TextBlock Text="Berry Count" TextDecorations="Underline" FontSize="16" FontWeight="Bold" />
+        </Button>
+        <ListBox x:Name="Berries" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden" Background="Transparent" HorizontalAlignment="Left" Height="411" Margin="10,127,0,0" VerticalAlignment="Top" Width="366" FontSize="13" FontWeight="Bold" SelectionChanged="Routes_SelectionChanged" MouseDoubleClick="Routes_MouseDoubleClick"/>
     </Grid>
 </Window>

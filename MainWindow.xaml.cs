@@ -37,6 +37,9 @@ namespace BerryMap
             Title = MessageOfTheDay.Message;
             // messageOfTheDayBlock.Text = MessageOfTheDay.Message;
 
+            ShowPlotsButton.Visibility = Visibility.Hidden;
+            Berries.Visibility = Visibility.Hidden;
+
             SetMap();
 
             TurnOffDisplays();
@@ -117,6 +120,33 @@ namespace BerryMap
             {
                 Routes.Items.Add(plot);
             }
+
+            Berries.Items.Clear();
+            List<BerryViewModel> berries = new List<BerryViewModel>();
+            int emptySlots = 0;
+            foreach(Plot plot in plots)
+            {
+                foreach (Berry berry in plot.Berries)
+                {
+                    if (berry != null)
+                    {
+                        if (berries.Find(x => x.Berry.Name == berry.Name) == null)
+                            berries.Add(new BerryViewModel() { Berry = berry, Quantity = 1 });
+                        else
+                            berries.Find(x => x.Berry.Name == berry.Name).Quantity++;
+                    }
+                    else
+                        emptySlots++;
+                }
+            }
+
+            if (emptySlots != 0)
+                berries.Add(new BerryViewModel() { Berry = new Berry() { Name = "Empty" }, Quantity = emptySlots });
+
+            foreach (BerryViewModel berry in berries)
+            {
+                Berries.Items.Add(berry);
+            }
         }
 
         private void Window_Closed(object sender, EventArgs e)
@@ -168,6 +198,26 @@ namespace BerryMap
             plots.Add(new Plot(4, new Location("Eterna City")));
             plots.Add(new Plot(4, new Location("Route 218")));
             plots.Add(new Plot(4, new Location("Route 220")));
+        }
+
+        private void ShowBerryCount_Click(object sender, RoutedEventArgs e)
+        {
+            // Change the list to display berries.
+            Berries.Visibility = Visibility.Visible;
+            ShowPlotsButton.Visibility = Visibility.Visible;
+
+            Routes.Visibility = Visibility.Hidden;
+            ShowBerryCount.Visibility = Visibility.Hidden;
+        }
+
+        private void ShowPlotsButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Change the list to display plots.
+            Berries.Visibility = Visibility.Hidden;
+            ShowPlotsButton.Visibility = Visibility.Hidden;
+
+            Routes.Visibility = Visibility.Visible;
+            ShowBerryCount.Visibility = Visibility.Visible;
         }
     }
 }

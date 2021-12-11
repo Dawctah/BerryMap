@@ -26,6 +26,14 @@ namespace BerryMap.Models
         }
     }
 
+    public class BerryViewModel
+    {
+        public Berry Berry { get; set; }
+        public int Quantity { get; set; }
+
+        public override string ToString() => Berry.ToString() + "\t\t\t\t\t\tx" + Quantity;
+    }
+
     public class Item
     {
         [JsonProperty("url")]
