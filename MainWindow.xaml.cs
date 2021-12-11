@@ -174,7 +174,9 @@ namespace BerryMap
         {
             plots.Add(new Plot(4, new Location("Route 208", Route208)));
             plots.Add(new Plot(2, new Location("Floaroma Town", FloaromaTown)));
-            plots.Add(new Plot(2, new Location("Route 212")));
+            plots.Add(new Plot(2, new Location("Route 212 (1)")));
+            plots.Add(new Plot(2, new Location("Route 212 (2)")));
+            plots.Add(new Plot(4, new Location("Route 212 (3)")));
             plots.Add(new Plot(2, new Location("Route 221", Route221)));
             plots.Add(new Plot(2, new Location("Route 209 (1)")));
             plots.Add(new Plot(2, new Location("Route 209 (2)")));
@@ -184,7 +186,6 @@ namespace BerryMap
             plots.Add(new Plot(2, new Location("Route 215 (2)")));
             plots.Add(new Plot(4, new Location("Route 214")));
             plots.Add(new Plot(4, new Location("Pastoria City", PastoriaCity)));
-            plots.Add(new Plot(4, new Location("Route 212")));
             plots.Add(new Plot(4, new Location("Route 213")));
             plots.Add(new Plot(4, new Location("Route 210")));
             plots.Add(new Plot(4, new Location("Route 211")));
