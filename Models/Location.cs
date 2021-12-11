@@ -25,12 +25,13 @@ namespace BerryMap.Models
         {
             if (Display != null)
             {
-                BitmapImage bitmap = new BitmapImage();
+                /* BitmapImage bitmap = new BitmapImage();
                 bitmap.BeginInit();
                 string location = System.Reflection.Assembly.GetEntryAssembly().Location.Replace("BerryMap.exe", "flag.png");
                 bitmap.UriSource = new Uri(location, UriKind.Absolute);
                 bitmap.EndInit();
-                Display.Source = bitmap;
+                Display.Source = bitmap; */
+                Display.Visibility = System.Windows.Visibility.Visible;
             }
         }
     }
