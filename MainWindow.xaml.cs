@@ -118,6 +118,9 @@ namespace BerryMap
             
             foreach (Plot plot in plots)
             {
+                if (plot.Location.Name == "Eterna City")
+                    plot.Location.Name = "Eterna Forest";
+
                 Routes.Items.Add(plot);
             }
 
@@ -196,7 +199,7 @@ namespace BerryMap
             plots.Add(new Plot(4, new Location("Route 205 (1)")));
             plots.Add(new Plot(2, new Location("Route 205 (2)")));
             plots.Add(new Plot(2, new Location("Route 205 (3)")));
-            plots.Add(new Plot(4, new Location("Eterna City")));
+            plots.Add(new Plot(4, new Location("Eterna Forest")));
             plots.Add(new Plot(4, new Location("Route 218")));
             plots.Add(new Plot(4, new Location("Route 220")));
         }

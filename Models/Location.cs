@@ -9,7 +9,7 @@ namespace BerryMap.Models
         [System.NonSerialized]
         private Label display;
 
-        public string Name { get; private set; }
+        public string Name { get; set; }
 
         public Label Display
         {
