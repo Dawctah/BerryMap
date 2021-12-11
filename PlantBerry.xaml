@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BerryMap"
         mc:Ignorable="d"
-        Title="PlantBerry" Height="108.424" Width="521.305" Loaded="Window_Loaded">
+        Title="Plant a Berry" Height="108.424" Width="521.305" Loaded="Window_Loaded">
     <Grid Name="Wrapper">
         <Button Name="Plant" Content="Confirm" HorizontalAlignment="Left" Margin="10,40,0,0" VerticalAlignment="Top" Width="120" Height="27" Click="Plant_Click"/>
         <Button Name="Cancel" Content="Cancel" HorizontalAlignment="Left" Margin="385,40,0,0" VerticalAlignment="Top" Width="120" Height="27" IsCancel="True"/>
