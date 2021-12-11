@@ -14,7 +14,7 @@ namespace BerryMap
             ":O",
             "Message delayed until " + (DateTime.Now.Year + 1),
             "Is that a JoJo reference!?",
-            "Now available in board-game form",
+            "The hit board-game brought to life!",
             "Cool!",
             "Radical!",
             "Written in the stars",
@@ -58,7 +58,11 @@ namespace BerryMap
             "We're no strangers to love",
             "WOOP!",
             "Poketuber Reacts to Jaiden's First Nuzlocke",
-            "Poketuber Reacts to Jaiden's Second Nuzlocke"
+            "Poketuber Reacts to Jaiden's Second Nuzlocke",
+            "The very best",
+            "Like no one ever was",
+            "To catch them is my real test",
+            "To train them is my cause"
         };
 
         public static string Message
