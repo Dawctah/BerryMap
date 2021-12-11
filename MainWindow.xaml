@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BerryMap"
         mc:Ignorable="d"
-        Title="" Height="580.5" Width="1020.5" Loaded="Window_Loaded" Closed="Window_Closed">
+        Title="Berry Map" Height="580.5" Width="1020.5" Loaded="Window_Loaded" Closed="Window_Closed">
     <Grid>
         <Image Name="Map" HorizontalAlignment="Left" Height="528" Margin="10,10,-200,-119" VerticalAlignment="Top" Width="982">
             <!-- <Image.Source>
