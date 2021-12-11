@@ -55,7 +55,7 @@ namespace BerryMap
             List<Berry> berries = GetBerries();
             System.Random random = new System.Random();
 
-            Berry berry = ParseResponse<Berry>(SendRequest<string>("GET", BaseURL + "berry/" + random.Next(berries.Count)));
+            Berry berry = ParseResponse<Berry>(SendRequest<string>("GET", BaseURL + "berry/" + (random.Next(berries.Count) + 1)));
             berry.Item = ParseResponse<Item>(SendRequest<string>("GET", berry.Item.URL));
 
             return berry.Item.Sprite.Image;
